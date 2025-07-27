@@ -4,36 +4,23 @@ import {
     redirect,
     useNavigate,
  } from "react-router-dom";
- import { updateContact, getContact } from "../contacts";
+ import { updateContact, getContact, createContact } from "../contacts";
 
- export async function action({ request, params }) {
+export async function action({ request, params }) {
   const formData = await request.formData();
-  //const firstName = formData.get("first");
- // const lastName = formData.get("last");
   const updates = Object.fromEntries(formData);
 
-  /*updates.first; // "Some"
-  updates.last; // "Name"
-   if (params.contactId) {
+  if (params.contactId) {
     await updateContact(params.contactId, updates);
     return redirect(`/contacts/${params.contactId}`);
   } else {
     const newContact = await createContact(updates);
     return redirect(`/contacts/${newContact.id}`);
-  }*/
-
-  if (!contactId) {
-    const newContact = await createContact(updates);
-    contactId = newContact.id;
-  } else {
-    await updateContact(contactId, updates);
   }
-
-  return redirect(`/contacts/${contactId}`);
 }
 
 export async function loader({ params }) {
-   if (!params.contactId) {
+  if (!params.contactId) {
     return { contact: {} }; // return empty contact for new
   }
   return { contact: await getContact(params.contactId) };
@@ -97,7 +84,7 @@ export default function EditContact() {
             navigate(-1);
           }}
         >
-            Cancel
+          Cancel
         </button>
       </p>
     </Form>
