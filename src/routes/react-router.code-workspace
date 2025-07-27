@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "react-router",
+			"path": "../.."
+		},
+		{
+			"name": "src",
+			"path": "../../../.Trash/src"
+		}
+	],
+	"settings": {}
+}
